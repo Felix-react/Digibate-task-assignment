@@ -1,0 +1,26 @@
+<form (ngSubmit)="onSubmit()" #blogForm="ngForm" >
+  <div class="form-group">
+    <label for="description">Blog Description:</label>
+    <input type="text" id="description" [(ngModel)]="description" name="description" required />
+  </div>
+  <div class="form-group">
+    <label for="length">Blog Length:</label>
+    <select id="length" [(ngModel)]="length" name="length" required>
+      <option value="short">Short</option>
+      <option value="medium">Medium</option>
+      <option value="long">Long</option>
+    </select>
+  </div>
+  <div class="form-group">
+    <label for="structure">Blog Structure:</label>
+    <select id="structure" [(ngModel)]="structure" name="structure" required>
+      <option value="list">List</option>
+      <option value="interview">Interview</option>
+    </select>
+  </div>
+  <div class="form-group">
+    <label for="file">Company Details (JSON File):</label>
+    <input type="file" id="file" (change)="onFileChange($event)" required />
+  </div>
+  <button type="submit">Generate Blog Post</button>
+</form>
