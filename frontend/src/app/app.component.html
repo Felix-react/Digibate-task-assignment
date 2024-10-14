@@ -1,26 +1,61 @@
-<form (ngSubmit)="onSubmit()" #blogForm="ngForm" >
-  <div class="form-group">
-    <label for="description">Blog Description:</label>
-    <input type="text" id="description" [(ngModel)]="description" name="description" required />
+<form (ngSubmit)="onSubmit()" #blogForm="ngForm" class="max-w-lg mx-auto p-4 bg-white shadow-md rounded-md">
+  <div class="mb-4">
+    <label for="description" class="block text-sm font-medium text-gray-700">Blog Description:</label>
+    <input
+      type="text"
+      id="description"
+      [(ngModel)]="description"
+      name="description"
+      required
+      class="mt-1 block w-full p-2 border border-gray-300 rounded-md focus:outline-none focus:ring focus:ring-blue-500"
+      placeholder="Enter blog description"
+    />
   </div>
-  <div class="form-group">
-    <label for="length">Blog Length:</label>
-    <select id="length" [(ngModel)]="length" name="length" required>
+  
+  <div class="mb-4">
+    <label for="length" class="block text-sm font-medium text-gray-700">Blog Length:</label>
+    <select
+      id="length"
+      [(ngModel)]="length"
+      name="length"
+      required
+      class="mt-1 block w-full p-2 border border-gray-300 rounded-md focus:outline-none focus:ring focus:ring-blue-500"
+    >
       <option value="short">Short</option>
       <option value="medium">Medium</option>
       <option value="long">Long</option>
     </select>
   </div>
-  <div class="form-group">
-    <label for="structure">Blog Structure:</label>
-    <select id="structure" [(ngModel)]="structure" name="structure" required>
+  
+  <div class="mb-4">
+    <label for="structure" class="block text-sm font-medium text-gray-700">Blog Structure:</label>
+    <select
+      id="structure"
+      [(ngModel)]="structure"
+      name="structure"
+      required
+      class="mt-1 block w-full p-2 border border-gray-300 rounded-md focus:outline-none focus:ring focus:ring-blue-500"
+    >
       <option value="list">List</option>
       <option value="interview">Interview</option>
     </select>
   </div>
-  <div class="form-group">
-    <label for="file">Company Details (JSON File):</label>
-    <input type="file" id="file" (change)="onFileChange($event)" required />
+  
+  <div class="mb-4">
+    <label for="file" class="block text-sm font-medium text-gray-700">Company Details (JSON File):</label>
+    <input
+      type="file"
+      id="file"
+      (change)="onFileChange($event)"
+      required
+      class="mt-1 block w-full p-2 border border-gray-300 rounded-md focus:outline-none focus:ring focus:ring-blue-500"
+    />
   </div>
-  <button type="submit">Generate Blog Post</button>
+  
+  <button
+    type="submit"
+    class="w-full bg-blue-600 text-white font-medium py-2 rounded-md hover:bg-blue-500 focus:outline-none focus:ring focus:ring-blue-300"
+  >
+    Generate Blog Post
+  </button>
 </form>
