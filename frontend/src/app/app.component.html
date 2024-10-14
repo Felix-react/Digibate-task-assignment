@@ -59,3 +59,12 @@
     Generate Blog Post
   </button>
 </form>
+
+<!-- Display the generated blog post -->
+<div *ngIf="generatedPost" class="mt-6 p-4 bg-gray-100 border border-gray-300 rounded-md">
+  <h3 class="text-lg font-semibold">Generated Blog Post:</h3>
+  <div [innerHTML]="generatedPost" class="mt-2"></div>
+</div>
+
+<!-- Optional: Display error message -->
+<div *ngIf="errorMessage" class="mt-4 text-red-600">{{ errorMessage }}</div>

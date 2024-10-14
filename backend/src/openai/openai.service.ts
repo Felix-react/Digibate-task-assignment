@@ -1,5 +1,5 @@
 import { Injectable } from '@nestjs/common';
-import OpenAI from 'openai'; // Updated import
+import OpenAI from 'openai';
 
 @Injectable()
 export class OpenaiService {
@@ -7,20 +7,24 @@ export class OpenaiService {
 
   constructor() {
     this.openai = new OpenAI({
-      apiKey: process.env.OPENAI_API_KEY, // Set your OpenAI API key in .env
+      apiKey: process.env.OPENAI_API_KEY,
     });
   }
 
-  async generateBlog(data: any): Promise<string> {
+  async generateBlog(data: any, callback: (chunk: string) => void) {
     const { description, structure, length, companyDetails } = data;
+
     const prompt = `Generate a ${structure} blog post about ${description}. It should be ${length} words long. Here are the company details: ${JSON.stringify(companyDetails)}`;
 
     const response = await this.openai.chat.completions.create({
-      model: 'gpt-3.5-turbo', // You can adjust this model as needed
+      model: 'gpt-3.5-turbo',
       messages: [{ role: 'user', content: prompt }],
       max_tokens: 500,
+      stream: true, // Enable streaming
     });
 
-    return response.choices[0].message.content; // Updated to match new response structure
+    for await (const chunk of response) {
+      callback(chunk.choices[0].delta.content);
+    }
   }
 }
